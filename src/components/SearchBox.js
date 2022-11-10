@@ -22,15 +22,18 @@ class SearchBox extends Component {
         this.setState({ input: e.target.value });
     }
 
-
     searchUser = (e) => {
         e.preventDefault();
-        this.setState({ githubLoaded: "loading" });
-        this.setState({ gitlabLoaded: "loading" });
 
-        this.setState({ loading: true });
-        this.searchUserOnGithub(this.state.input);
-        this.searchUserOnGitLab(this.state.input);
+        if (this.state.input !== "") {
+            this.setState({ githubLoaded: "loading" });
+            this.setState({ gitlabLoaded: "loading" });
+            this.searchUserOnGithub(this.state.input);
+            this.searchUserOnGitLab(this.state.input);
+        } else {
+            alert("Please enter a username first!")
+        }
+
     }
 
     searchUserOnGithub = (username) => {
@@ -72,20 +75,21 @@ class SearchBox extends Component {
     }
 
     render() {
-        const { githubLoaded,gitlabLoaded, gitlabUserResult, githubUserResult, error } = this.state;
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } return (
-            <div className='search-container' >
-                <form>
-                    <input type="text" onChange={this.handleInputChange} />
-                    <button type="button" onClick={this.searchUser} >Search</button>
-                </form>
-                <h3>Github:</h3><br />
+        const { githubLoaded, gitlabLoaded, gitlabUserResult, githubUserResult, error } = this.state;
+        return (
+            <div className='container'>
+                <div className='search-container' >
+                    <form>
+                        <input type="text" onChange={this.handleInputChange} />
+                        <button type="button" onClick={this.searchUser} >Search</button>
+                    </form>
+                </div>
+                {error ? <div className='user-container'><p>Error: {error.message}</p></div> : ''}
+                <h3>Github:</h3>
                 {githubLoaded === "loading" ? <FadeLoader color="black" /> : <GithubUsersList user={githubUserResult} githubLoaded={githubLoaded} />}
-                <h3>GitLab:</h3 > <br />
+                <h3>Gitlab:</h3>
                 {gitlabLoaded === "loading" ? <FadeLoader color="black" /> : <GitlabUsersList users={gitlabUserResult} gitlabLoaded={gitlabLoaded} />}
-            </div >
+            </div>
         )
     }
 }
