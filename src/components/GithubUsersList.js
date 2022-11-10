@@ -10,11 +10,10 @@ function GithubUsersList(props) {
                     <p> User Not found</p>
                 </div>
             )
-
         } else {
             return (
                 <div>
-                    <a href={user.html_url} target="_blank">
+                    <a href={user.html_url} target="_blank" rel="noreferrer">
                     <div className='user-card'>
                             <div className='image-container'>
                                 <img src={user.avatar_url} alt="user avatar" crossOrigin="anonymous" />
@@ -23,20 +22,20 @@ function GithubUsersList(props) {
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td>Username:</td>
-                                            <td>{user.login}</td>
+                                            <td className='td-left'>Username:</td>
+                                            <td className='td-right'>{user.login}</td>
                                         </tr>
                                         <tr>
-                                            <td>Name:</td>
-                                            <td>{user.name}</td>
+                                            <td className='td-left'>Name:</td>
+                                            <td className='td-right'>{user.name}</td>
                                         </tr>
                                         <tr>
-                                            <td>Bio:</td>
-                                            <td>{user.bio}</td>
+                                            {user.bio !== null ? <td className='td-left'>Bio:</td> : ''}
+                                            {user.bio !== null ? <td className='td-right'>{user.bio}</td> : ''}
                                         </tr>
                                         <tr>
-                                            <td>Company:</td>
-                                            <td>{user.company}</td>
+                                            {user.company !== null ? <td className='td-left'>Company:</td> : ''}
+                                            {user.company !== null ? <td className='td-right'>{user.company}</td>:''}
                                         </tr>
                                     </tbody>
                                 </table>
