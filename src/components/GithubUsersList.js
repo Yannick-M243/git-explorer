@@ -1,8 +1,11 @@
 import React from 'react'
-//This function shows the list of users with their details
+
+//This function shows the github profil details of a given user 
 function GithubUsersList(props) {
     const user = props.user;
     const githubLoaded = props.githubLoaded;
+
+    //making sure the information have been retrieved before displaying them
     if (githubLoaded === "loaded") {
         if (user.id === undefined) {
             return (

@@ -15,8 +15,9 @@ function CommitsList(props) {
         });
     }
 
-    //Display a Not found error in case there is no commits found
+    //making sure the information have been retrieved before displaying them
     if (gitEventsLoaded === "loaded") {
+        //display a not found message in case no commits have been retrieved
         if (commits.length === 0) {
             return (
                 <div className='user-card'>

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="container"
+>
+  <h1>
+    Git Explorer
+  </h1>
+  <div
+    className="search-container"
+  >
+    <form>
+      <input
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+      />
+      <button
+        onClick={[Function]}
+        placeholder="Enter a username"
+        type="button"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <h3>
+     Github:
+  </h3>
+  <h3>
+     Gitlab:
+  </h3>
+  <h3>
+     Repositories:
+  </h3>
+  <h3>
+     Commits:
+  </h3>
+</div>
+`;

@@ -1,9 +1,11 @@
 import React from 'react'
 
+//This function shows the gitlab profil details of a given user
 function GitlabUsersList(props) {
     const users = props.users;
     const gitlabLoaded = props.gitlabLoaded;
 
+    //making sure the information have been retrieved before displaying them
     if (gitlabLoaded === "loaded") {
         if (users.length === 0) {
             return (

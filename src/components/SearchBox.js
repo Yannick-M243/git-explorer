@@ -11,6 +11,8 @@ class SearchBox extends Component {
         super(props)
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleKeypress = this.handleKeypress.bind(this);
+
+        //initialising states
         this.state = {
             input: "",
             githubUserResult: [],
@@ -26,14 +28,19 @@ class SearchBox extends Component {
         }
     }
 
+    //this function is used to change the input state everytime the user change the input field
     handleInputChange = (e) => {
         this.setState({ input: e.target.value });
     }
 
+    //this function is called when the user click on the button search
+    //it is responsible for calling the necessary functions to fetch all the data required from the differents APIs
+    //and conroling the loading states
     searchUser = (e) => {
         e.preventDefault();
 
-        if (this.state.input !== "") {
+        
+        if (this.state.input !== "") {//prevent empty input
             this.setState({ githubLoaded: "loading" });
             this.setState({ gitlabLoaded: "loading" });
             this.setState({ gitRepoLoaded: "loading" });
@@ -48,6 +55,7 @@ class SearchBox extends Component {
 
     }
 
+    //this function is used to retrieve information about the user's github profile
     searchUserOnGithub = (username) => {
         fetch(`/api/github/userinfo/${username}`)
             .then(res => res.json())
@@ -67,6 +75,7 @@ class SearchBox extends Component {
                 })
     }
 
+    //this function is used to retrieve information about the user's gitlab profile
     searchUserOnGitLab = (username) => {
         fetch(`/api/gitlab/userinfo/${username}`)
             .then(res => res.json())
@@ -85,6 +94,8 @@ class SearchBox extends Component {
                     });
                 })
     }
+
+    //this function is used to retrieve information about the user's github repositories
     searchRepositories = (username) => {
         fetch(`/api/github/repoinfo/${username}`)
             .then(res => res.json())
@@ -103,6 +114,7 @@ class SearchBox extends Component {
                     });
                 })
     }
+    //this function is used to retrieve information about the user's github events
     searchUserEvents = (username) => {
         fetch(`/api/github/eventsinfo/${username}`)
             .then(res => res.json())

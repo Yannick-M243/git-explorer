@@ -4,9 +4,10 @@ function RepositoryList(props) {
   const repos = props.repos;
   const gitRepoLoaded = props.gitRepoLoaded;
 
-  //Display a Not found error in case there is no repositories found
+  //making sure the information have been retrieved before displaying them
   if (gitRepoLoaded === "loaded") {
-    if (repos.message === "Not Found") {
+    //Display a Not found error in case there is no repositories found
+    if (repos.message === "Not Found" || repos.length===0) {
       return (
         <div className='user-card'>
           <p>No repositories found</p>
